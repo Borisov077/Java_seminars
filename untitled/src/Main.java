@@ -13,15 +13,17 @@ public class Main {
         System.out.println(n);
 
 //        3. Найти все кратные n числа в диапазоне от i до Short.MAX_VALUE сохранить в массив m1
-        int[] m1 = multiplesNumberN(n,i,Short.MAX_VALUE);
+        int[] m1 = multiples(n,i,Short.MAX_VALUE);
 
 //        4. Найти все некратные n числа в диапазоне от Short.MIN_VALUE до i и сохранить в массив m2
+        int[] m2 = getNonMultiples(n, Short.MIN_VALUE, i);
+//        printArray(m2, 24);
     }
 
     //    1. Выбросить случайное целое число в диапазоне от 0 до 2000 и сохранить в i
     static int randomInt(int min, int max) {
         Random random = new Random();
-        return random.nextInt(min,max);
+        return random.nextInt(2000);
     }
 
     //    2. Посчитать и сохранить в n номер старшего значащего бита выпавшего числа
@@ -39,10 +41,29 @@ public class Main {
         for (int i = min; i < max; i++) {
             if (i % num == 0) multiples[index++] = i;
         }
-        return multiplesNumberN;
+        return multiples;
     }
+        static void printArray(int[] array, int columns) {
+            for (int i = 0; i < array.length; i++) {
+                if (i != 0 && i % columns == 0) System.out.println();
+                System.out.print(array[i] + " ");
+            }
+            System.out.println();
+        }
 
 
 //        4. Найти все некратные n числа в диапазоне от Short.MIN_VALUE до i и сохранить в массив m2
+        static int[] getNonMultiples(int divider, int min, int max) {
+            int size = 0;
+            for (int i = min; i < max; i++) {
+                if (i % divider != 0) size++;
+            }
+            int[] nonMultiples = new int[size];
+            int index = 0;
+            for (int i = min; i < max; i++) {
+                if (i % divider != 0) nonMultiples[index++] = i;
+            }
+            return nonMultiples;
+        }
 }
 }
